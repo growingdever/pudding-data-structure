@@ -16,6 +16,9 @@
     <Filter Include="소스 파일\Stack">
       <UniqueIdentifier>{becdaedd-b49c-4c8c-9101-880e5f1bcffc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Sort">
+      <UniqueIdentifier>{d275fd1f-c425-4fa1-bcb5-f28568fd8b83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -28,6 +31,9 @@
   <ItemGroup>
     <ClInclude Include="Stack.h">
       <Filter>소스 파일\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="mergesort.h">
+      <Filter>소스 파일\Sort</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
