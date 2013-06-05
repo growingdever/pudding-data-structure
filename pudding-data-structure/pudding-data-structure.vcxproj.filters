@@ -19,6 +19,9 @@
     <Filter Include="소스 파일\Sort">
       <UniqueIdentifier>{d275fd1f-c425-4fa1-bcb5-f28568fd8b83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\util">
+      <UniqueIdentifier>{2dcebbfb-a1fc-41e5-97ca-ab2d85611465}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -34,6 +37,12 @@
     </ClInclude>
     <ClInclude Include="mergesort.h">
       <Filter>소스 파일\Sort</Filter>
+    </ClInclude>
+    <ClInclude Include="insertionsort.h">
+      <Filter>소스 파일\Sort</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>소스 파일\util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

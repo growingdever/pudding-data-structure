@@ -1,29 +1,56 @@
 
-void swap( int& a, int& b )
+#ifndef _MERGE_SORT_H_
+#define _MERGE_SORT_H_
+
+#include "util.h"
+#include "insertionsort.h"
+
+void merge( int arr[], int left, int mid, int right )
 {
-	int tmp = a;
-	a = b;
-	b = tmp;
+	int* tmp = new int[right - left + 1];
+	init( tmp, right - left + 1, 0 );
+	printf( "left : %d\t right : %d\n", left, right );
+
+	int i = left;
+	int j = mid+1;
+	int cnt = 0;
+
+	while( i <= mid && j <= right )
+	{
+		if( arr[i] > arr[j] )
+			tmp[cnt++] = arr[i++];
+		else
+			tmp[cnt++] = arr[j++];
+	}
+
+	while( i <= mid)
+		tmp[cnt++] = arr[i++];
+
+	while( j <= right )
+		tmp[cnt++] = arr[j++];
+
+	int k=0;
+	cnt = 0;
+	for( k=left; k<=right; k++ )
+		arr[k] = tmp[cnt++];
+
+	print( tmp, right - left + 1 );
+	print( arr, 10 );
+	printf("\n\n");
+
+	delete[] tmp;
 }
 
-void merge( int arr[], int start, int end )
+void mergesort( int arr[], int left, int right )
 {
-	int* tmp = new int[end - start + 1];
-	int i, cnt = 0;
-
-	for( i=start; i<=end; i++ )
-		tmp[cnt++] = arr[i];
-
-}
-
-void mergesort( int arr[], int start, int end )
-{
-	if( start >= end )
+	if( left >= right )
 		return ;
 
-	int mid = (start + end) / 2; // floor
+	int mid = (left + right) / 2; // floor
 
-	mergesort( arr, start, mid );
-	mergesort( arr, mid+1, end );
-	merge( arr, start, end );
+	mergesort( arr, left, mid );
+	mergesort( arr, mid+1, right );
+	merge( arr, left, mid, right );
 }
+
+#endif
