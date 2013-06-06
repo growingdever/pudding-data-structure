@@ -1,23 +1,8 @@
 
 #include "Stack.h"
 
-#include <stdio.h>
-
-HongStack::HongStack(int size)
-	:_size(size),
-	_rear(0)
-{
-	_items = new int[size+1];
-	_items[size] = 0;
-}
-
-HongStack::~HongStack()
-{
-	if( _items )
-		delete _items;
-}
-
-void HongStack::push( int n )
+template <typename T>
+void HongStack<T>::push( int n )
 {
 	if( _rear + 1 > _size )
 	{
@@ -28,31 +13,28 @@ void HongStack::push( int n )
 	_items[ _rear++ ] = n;
 }
 
-void HongStack::pop()
+template <typename T>
+T HongStack<T>::pop()
 {
 	if( _rear - 1 < 0 )
 	{
 		printf("Stack under flow.\n");
-		return;
+		return 0;
 	}
 
-	_items[ _rear-- ] = 0;
+	T* t = _items[ _rear ];
+	_items[ _rear ] =0;
+	_rear--;
+
+	return t;
 }
 
-void HongStack::Print()
-{
-	int i;
-	for( i=0; i<_rear; i++ )
-	{
-		printf("%d ", _items[i]);
-	}
-	printf("\n");
-}
 
-void HongStack::clear()
+template <typename T>
+void HongStack<T>::clear()
 {
 	while( _rear != 0 )
 	{
-		_items[ _rear-- ] = 0;
+		delete _items[ _rear-- ];
 	}
 }

@@ -11,6 +11,8 @@
 #include "mergesort.h"
 #include "insertionsort.h"
 
+#pragma warning(disable : 4996)
+
 
 int comp( int a, int b )
 {
@@ -20,15 +22,9 @@ int comp( int a, int b )
 		return false;
 }
 
-int main()
+void TESTMergeSort()
 {
-	// Check memory leak
-	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-	_CrtDumpMemoryLeaks();
-
-	srand( (unsigned)time(NULL) );
-
-	FILE* fp = fopen( "input.txt", "r");
+	FILE* in = fopen( "input.txt", "r");
 
 	int size = rand()%17;
 	int n;
@@ -37,12 +33,12 @@ int main()
 	QueryPerformanceFrequency(&freq);
 
 
-	fscanf(fp, "%d", &n);
+	fscanf(in, "%d", &n);
 
 	int* arr = new int[n];
 	int i;
 	for( i=0; i<n; i++ )
-		fscanf(fp, "%d", &arr[i]);
+		fscanf(in, "%d", &arr[i]);
 
 
 	QueryPerformanceCounter(&t1);
@@ -63,4 +59,29 @@ int main()
 		fprintf(out, "%d\n", arr[i]);
 
 	delete[] arr;
+
+	fclose(in);
+	fclose(out);
+}
+
+void TESTStack()
+{
+	HongStack<int> hs(5);
+
+	/*hs.push( new int(1) );
+	hs.push( new int(1) );
+	hs.push( new int(1) );*/
+}
+
+int main()
+{
+	// Check memory leak
+	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+	_CrtDumpMemoryLeaks();
+
+	srand( (unsigned)time(NULL) );
+
+	TESTStack();
+	
+	return 0;
 }
