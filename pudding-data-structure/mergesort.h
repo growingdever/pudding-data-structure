@@ -5,52 +5,89 @@
 #include "util.h"
 #include "insertionsort.h"
 
-void merge( int arr[], int left, int mid, int right )
-{
-	int* tmp = new int[right - left + 1];
-	init( tmp, right - left + 1, 0 );
-	printf( "left : %d\t right : %d\n", left, right );
 
-	int i = left;
-	int j = mid+1;
+template <typename T, typename C>
+void merge( T arr[], int leftstart, int leftend, int rightstart, int rightend, C (*fp)(int,int) )
+{
+	T* tmp = new T[ rightend - leftstart + 1];
+	init( tmp, rightend - leftstart + 1, 0 );
+
+	int i = leftstart;
+	int j = rightstart;
 	int cnt = 0;
 
-	while( i <= mid && j <= right )
+	while( i <= leftend && j <= rightend )
 	{
-		if( arr[i] > arr[j] )
+		if( fp(arr[i], arr[j]) )
 			tmp[cnt++] = arr[i++];
 		else
 			tmp[cnt++] = arr[j++];
 	}
 
-	while( i <= mid)
+	while( i <= leftend )
 		tmp[cnt++] = arr[i++];
 
-	while( j <= right )
+	while( j <= rightend )
 		tmp[cnt++] = arr[j++];
 
-	int k=0;
-	cnt = 0;
-	for( k=left; k<=right; k++ )
-		arr[k] = tmp[cnt++];
-
-	print( tmp, right - left + 1 );
-	print( arr, 10 );
-	printf("\n\n");
+	int k;
+	int cnt2 = 0;
+	for( k = leftstart; k <= rightend; k++ )
+		arr[k] = tmp[cnt2++];
 
 	delete[] tmp;
 }
 
-void mergesort( int arr[], int left, int right )
+
+template <typename T, typename C>
+void mergesort( T arr[], int left, int right, C (*fp)(int,int) )
 {
 	if( left >= right )
-		return ;
+		return;
 
-	int mid = (left + right) / 2; // floor
+	int mid = ( left + right ) / 2;
+	
+	mergesort( arr, left, mid, fp );
+	mergesort( arr, mid+1, right, fp );
+	merge( arr, left, mid, mid+1, right, fp );
 
-	mergesort( arr, left, mid );
-	mergesort( arr, mid+1, right );
-	merge( arr, left, mid, right );
 }
+
+template <typename T, typename C>
+void mergesort_without_recursion( T arr[], int left, int right, C (*fp)(int,int) )
+{
+	int step = 2;
+	int i = 1;
+	int length = right - left + 1;
+	int tmp;
+
+	int l = left, r;
+
+	while( l < right )
+	{
+		merge( arr, l, l, l+1, l+1, fp );
+		l+=2;
+	}
+
+	for( step = 2; step < length; step *= 2 )
+	{
+		l = left;
+		r = l + step;
+		merge( arr, l, l+step-1, r, r+step-1, fp );
+
+		while( 1 )
+		{
+			l += step*2;
+			r = l + step;
+
+			if( r > right )
+				break;
+
+			merge( arr, l, l+step-1, r, r+step-1, fp );
+		}
+	}
+
+}
+
 
 #endif
