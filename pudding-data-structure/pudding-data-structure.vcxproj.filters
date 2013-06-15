@@ -44,5 +44,8 @@
     <ClInclude Include="util.h">
       <Filter>소스 파일\util</Filter>
     </ClInclude>
+    <ClInclude Include="quicksort.h">
+      <Filter>소스 파일\Sort</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

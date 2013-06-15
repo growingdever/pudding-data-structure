@@ -82,6 +82,7 @@
   <ItemGroup>
     <ClInclude Include="insertionsort.h" />
     <ClInclude Include="mergesort.h" />
+    <ClInclude Include="quicksort.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>

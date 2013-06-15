@@ -27,7 +27,6 @@ void TESTMergeSort()
 {
 	FILE* in = fopen( "input.txt", "r");
 
-	int size = rand()%17;
 	int n;
 
 	LARGE_INTEGER freq, t1, t2;
@@ -67,9 +66,42 @@ void TESTMergeSort()
 
 void TESTQuickSort()
 {
-	int arr[] = { 20, 1, 19, 5, 9, 6, 13, 10, 20, 7	};
+	FILE* in = fopen( "input.txt", "r");
 
-	quicksort( arr, 10 );
+	int n;
+
+	LARGE_INTEGER freq, t1, t2;
+	QueryPerformanceFrequency(&freq);
+
+
+	fscanf(in, "%d", &n);
+
+	int* arr = new int[n];
+	int i;
+	for( i=0; i<n; i++ )
+		fscanf(in, "%d", &arr[i]);
+
+
+	QueryPerformanceCounter(&t1);
+	printf("--Pre sorting--\nTime : %lld\n\n", t1.QuadPart);
+
+	quicksort( arr, n, comp );
+	
+	QueryPerformanceCounter(&t2);
+	printf("--Sorted--\nTime : %lld\n\n", t2.QuadPart);
+
+	printf("Time diff = %lld\n\n", (t2.QuadPart - t1.QuadPart) );
+
+
+	FILE* out = fopen( "output.txt", "w" );
+	fprintf(out, "%d\n", n);
+	for( i=0; i<n; i++ )
+		fprintf(out, "%d\n", arr[i]);
+
+	delete[] arr;
+
+	fclose(in);
+	fclose(out);
 }
 
 void TESTInsertionSort()
@@ -103,7 +135,8 @@ int main()
 
 	//TESTStack();
 	//TESTQuickSort();
-	TESTInsertionSort();
+	TESTQuickSort();
+	//TESTInsertionSort();
 	
 	return 0;
 }
