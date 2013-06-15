@@ -9,6 +9,7 @@
 
 #include "Stack.h"
 #include "mergesort.h"
+#include "quicksort.h"
 #include "insertionsort.h"
 
 #pragma warning(disable : 4996)
@@ -64,6 +65,25 @@ void TESTMergeSort()
 	fclose(out);
 }
 
+void TESTQuickSort()
+{
+	int arr[] = { 20, 1, 19, 5, 9, 6, 13, 10, 20, 7	};
+
+	quicksort( arr, 10 );
+}
+
+void TESTInsertionSort()
+{
+	int arr[] = { 1, 3, 5, 7, 9, 2, 4, 6, 8, 10	};
+
+	insertionsort( arr, 10 );
+	//insert( arr, 10, 0, 999 );
+
+	for( int i=0; i<10; i++ )
+		printf("%4d", arr[i]);
+	printf("\n");
+}
+
 void TESTStack()
 {
 	HongStack<int> hs(5);
@@ -81,7 +101,9 @@ int main()
 
 	srand( (unsigned)time(NULL) );
 
-	TESTStack();
+	//TESTStack();
+	//TESTQuickSort();
+	TESTInsertionSort();
 	
 	return 0;
 }

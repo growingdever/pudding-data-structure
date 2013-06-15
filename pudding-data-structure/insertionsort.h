@@ -4,34 +4,29 @@
 
 #include "util.h"
 
-void insertionsort( int arr[], int size, int value, bool increase )
+void insertionsort( int arr[10], int size )
 {
+	int* tmparr = new int[size];
+	init( tmparr, size, 0 );
+
+	tmparr[0] = arr[0];
+
 	// Increasement sorting
-	if( increase )
+	int i, j;
+	for( i=1; i<size; i++ )
 	{
-		int i;
-		for( i=0; i<size; i++ )
+		for( j=0; j<i; j++ )
 		{
-			if( arr[i] > value )
-			{
-				insert( arr, size, i, value );
+			if( tmparr[j] < arr[i] )
 				break;
-			}
 		}
+		
+		insert( tmparr, size, j, arr[i]);
 	}
-	// Decreasement sorting
-	else
-	{
-		int i;
-		for( i=0; i<size; i++ )
-		{
-			if( arr[i] < value )
-			{
-				insert( arr, size, i, value );
-				break;
-			}
-		}
-	}
+
+	mymemcpy( arr, tmparr, size );
+
+	delete[] tmparr;
 }
 
 #endif

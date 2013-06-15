@@ -17,12 +17,27 @@ void init( int arr[], int size, int value )
 		arr[i] = value;
 }
 
-void insert( int arr[], int size, int index, int value )
+void mymemcpy( int* des, int* src, int size )
 {
 	int i;
-	for( i=size-2; i>=index; i-- )
-		arr[i+1] = arr[i];
-	arr[index] = value;
+	for( i=0; i<size; i++ )
+		des[i] = src[i];
+}
+
+void insert( int arr[], int size, int index, int value )
+{
+	int* tmparr = new int[size];
+	int i, cnt=0;
+
+	for( i=0; i<index; i++ )
+		tmparr[cnt++] = arr[i];
+	tmparr[cnt++] = value;
+	for( ; i<size-1; i++ )
+		tmparr[cnt++] = arr[i];
+
+	mymemcpy( arr, tmparr, size );
+
+	delete[] tmparr;
 }
 
 void swap( int& a, int& b )
