@@ -8,6 +8,7 @@
 #include <time.h>
 
 #include "Stack.h"
+#include "Queue.h"
 #include "mergesort.h"
 #include "quicksort.h"
 #include "insertionsort.h"
@@ -118,11 +119,42 @@ void TESTInsertionSort()
 
 void TESTStack()
 {
-	HongStack<int> hs(5);
+	HongStack<int> hs(3);
+	hs.push( 1 );
+	hs.push( 2 );
+	hs.push( 3 );
+	hs.push( 4 ); // stack overflow
+	int a = hs.pop();
+	hs.PrintTopToBottm();
 
-	/*hs.push( new int(1) );
-	hs.push( new int(1) );
-	hs.push( new int(1) );*/
+	hs.resize( 2 );
+	hs.push( 3 );
+	hs.PrintTopToBottm();
+
+	hs.clear();
+	hs.push( 4 );
+	hs.push( 5 );
+	hs.push( 6 );
+	hs.PrintTopToBottm();
+}
+
+void TESTQueue()
+{
+	HongQueue<int> hq(2);
+	hq.push( 1 );
+	hq.push( 2 );
+	hq.push( 3 ); // stack overflow
+	hq.PrintLeftToRight();
+
+	hq.resize(3);
+	hq.push( 3 );
+	hq.PrintLeftToRight();
+
+	hq.clear();
+	hq.push( 4 );
+	hq.push( 5 );
+	hq.push( 6 );
+	hq.PrintLeftToRight();
 }
 
 int main()
@@ -133,9 +165,9 @@ int main()
 
 	srand( (unsigned)time(NULL) );
 
-	//TESTStack();
+	TESTStack();
+	//TESTQueue();
 	//TESTQuickSort();
-	TESTQuickSort();
 	//TESTInsertionSort();
 	
 	return 0;

@@ -13,28 +13,22 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Stack">
-      <UniqueIdentifier>{becdaedd-b49c-4c8c-9101-880e5f1bcffc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Sort">
       <UniqueIdentifier>{d275fd1f-c425-4fa1-bcb5-f28568fd8b83}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\util">
       <UniqueIdentifier>{2dcebbfb-a1fc-41e5-97ca-ab2d85611465}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Data-Structure">
+      <UniqueIdentifier>{35211b26-abbf-4dff-92fc-c6372c9e67ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>소스 파일\Stack</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Stack.h">
-      <Filter>소스 파일\Stack</Filter>
-    </ClInclude>
     <ClInclude Include="mergesort.h">
       <Filter>소스 파일\Sort</Filter>
     </ClInclude>
@@ -46,6 +40,12 @@
     </ClInclude>
     <ClInclude Include="quicksort.h">
       <Filter>소스 파일\Sort</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>소스 파일\Data-Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>소스 파일\Data-Structure</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -77,11 +77,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="insertionsort.h" />
     <ClInclude Include="mergesort.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="quicksort.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="util.h" />
